@@ -1,5 +1,5 @@
 # 🚀 LUCY Awareness Hardened Monitoring Stack
-**Infrastructure Standard for PT Seraphim Digital Technology**
+**MOP Instalasi Lucy Awareness dengan Docker Rootless**
 
 Panduan instalasi dan optimasi Lucy Awareness pada Oracle Linux 10 menggunakan Docker Rootless.
 
