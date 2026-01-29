@@ -32,19 +32,19 @@ sudo dnf install -y dbus-user-session fuse-overlayfs slirp4netns
 curl -fsSL https://get.docker.com/rootless | sh
 
 2. Set Environment (~/.bashrc):
-export PATH=/home/adityowicaksono/bin:$PATH
+export PATH=/home/<username_lu>/bin:$PATH
 export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
 
 3. Linger & Deploy Lucy:
-sudo loginctl enable-linger adityowicaksono
+sudo loginctl enable-linger <username_lu>
 
 docker run -d \
   --name lucy-awareness \
   --restart always \
   -p 8080:80 \
   -p 8443:443 \
-  -v /home/adityowicaksono/lucy/data:/opt/phishing/files \
-  -v /home/adityowicaksono/lucy/logs:/opt/phishing/logs \
+  -v /home/<username_lu>/lucy/data:/opt/phishing/files \
+  -v /home/<username_lu>/lucy/logs:/opt/phishing/logs \
   lucysecurity/lucy:latest
 
 ---
@@ -65,15 +65,15 @@ EOF'
 sudo chmod +x /usr/local/bin/lucy-monitor
 
 3. Passwordless Sudo (via visudo):
-adityowicaksono ALL=(ALL) NOPASSWD: /usr/local/lib/.lucy-monitor-internal.sh
+<username_lu> ALL=(ALL) NOPASSWD: /usr/local/lib/.lucy-monitor-internal.sh
 
 ---
 
 ## 🔧 IV. MAINTENANCE & PERMISSION FIX
 Jika muncul error "Exception Error writing to file", jalankan:
 
-sudo -u adityowicaksono /home/adityowicaksono/bin/docker exec -u root lucy-awareness chown -R www-data:www-data /opt/phishing/files/assets/
-sudo -u adityowicaksono /home/adityowicaksono/bin/docker exec -u root lucy-awareness chmod -R 775 /opt/phishing/files/assets/
+sudo -u <username_lu> /home/<username_lu>/bin/docker exec -u root lucy-awareness chown -R www-data:www-data /opt/phishing/files/assets/
+sudo -u <username_lu> /home/<username_lu>/bin/docker exec -u root lucy-awareness chmod -R 775 /opt/phishing/files/assets/
 
 ---
 **Maintainer: Kucing1000cc**
